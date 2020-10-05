@@ -14,7 +14,8 @@ class Solution{
 	public int solution(String s) {
 		int answer = 0;
 		int stack = 0;
-		String compress;
+		String compress = "";
+		String temp;
 		String[] array = s.split(""); // s문자열을 1개 단위로 자름 
 		
 		try {
@@ -25,14 +26,17 @@ class Solution{
 				}else { // 다르면 stack과 그 문자를 compress에 붙여주고 반복
 					stack++;
 					
-					if(stack==1) {
-						compress = array[i];
-						System.out.printf(compress);
+					if(stack==1) { // 1은 생략
+						temp = array[i];
+						compress = compress + temp;
 						stack = 0;
+						temp = "";
+						
 					}else {
-						compress = stack+array[i];
-						System.out.printf(compress);
+						temp = stack+array[i];
+						compress = compress + temp;
 						stack = 0;
+						temp = "";
 						
 					}
 				}
@@ -43,19 +47,26 @@ class Solution{
 				stack++;
 			
 				if(stack==1) {
-					compress = array[array.length-2];
+					temp = array[array.length-2];
+					compress = compress + temp;
 					System.out.println(compress);
 					
 				}else {
-					compress = stack+array[array.length-2];
+					temp = stack+array[array.length-2];
+					compress = compress + temp;
 					System.out.println(compress);
 					
 				}
 			}else {
-				compress = array[array.length-1];
+				temp = array[array.length-1];
+				compress = compress + temp;
 				System.out.println(compress);
 			}
 		}
+		
+		answer = compress.length();
+		
+		
 		return answer;
 		
 	}
